@@ -1,4 +1,6 @@
- Brute Force soln
+https://leetcode.com/problems/3sum/ 
+
+Brute Force soln
 
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {

@@ -1,4 +1,4 @@
-
+https://leetcode.com/problems/majority-element/submissions/
 
 Brute Force tc- o(n^2)
 

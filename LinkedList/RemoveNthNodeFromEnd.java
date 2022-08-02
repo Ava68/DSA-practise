@@ -8,7 +8,7 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-
+https://leetcode.com/problems/remove-nth-node-from-end-of-list/submissions/
 tc-> o(2n)
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {

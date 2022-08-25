@@ -1,3 +1,5 @@
+https://leetcode.com/problems/next-greater-element-i/
+
 class Solution {
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
                 

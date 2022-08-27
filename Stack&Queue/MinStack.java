@@ -16,13 +16,15 @@ class MinStack {
         st.push(val);
     }
     
-    public void pop() {
-        // removing 2 times
-      // change current min to last min
-        if(st.pop() == min)
+     public void pop() {
+        
+        if(st.peek() == min)
         {
+            st.pop();
             min = st.pop();
         }
+        else
+            st.pop();
     }
     
     public int top() {

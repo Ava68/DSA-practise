@@ -62,7 +62,7 @@ class Solution {
                 int nrow = r + drow[i];
                 int ncol = c + dcol[i];
                 
-                if( nrow < n && nrow >= 0 && ncol < m && ncol >=0 && vis[nrow][ncol] == 0                                 && grid[nrow][ncol] == 1 )
+                if( nrow < n && nrow >= 0 && ncol < m && ncol >=0 && vis[nrow][ncol] == 0 && grid[nrow][ncol] == 1 )
                 {
                      q.add(new Pair(nrow,ncol,t+1));
                      vis[nrow][ncol] = 2;

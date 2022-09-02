@@ -17,45 +17,42 @@ class Solution
     int[] JobScheduling(Job arr[], int n)
     {
         // Your code here
-        Arrays.sort(arr, (a,b) -> (b.profit - a.profit));
+        Arrays.sort(arr, (a,b) -> b.profit - a.profit);
+        int max= 0;
         
-        int maxi =0;
         for(int i =0; i<n; i++)
         {
-            maxi = Math.max(maxi,arr[i].deadline);
+            max = Math.max(max,arr[i].deadline);
         }
         
-        // creating deadline slots
-        int result[] = new int[maxi+1];
+        int result[] = new int[max+1];
         
-        for(int i =1; i<=maxi; i++)
+        for(int i =1; i<=max; i++)
         {
             result[i] = -1;
         }
         
-        int countjobs = 0;
         int profit = 0;
-        
+        int countjobs=0;
         for(int i =0; i<n; i++)
         {
-            // checking for any slots from deadline to 0
-            for(int j = arr[i].deadline; j>0; j--)
+         
+            for(int ind=arr[i].deadline; ind>0; ind--)
             {
-                // free slot found (-1 is an empty day)
-                if(result[j] == -1)
+                if(result[ind] == -1)
                 {
-                    result[j] = i;
+                    profit += arr[i].profit;
                     countjobs++;
-                    profit+= arr[i].profit;
+                    result[ind] = arr[i].id; 
                     break;
                 }
+                
             }
         }
+        int res [] = new int[2];
+        res[0] = countjobs;
+        res[1] = profit;
         
-        int ans[] = new int[2];
-        ans[0] = countjobs;
-        ans[1] = profit;
-        
-        return ans;
+        return res;
     }
 }

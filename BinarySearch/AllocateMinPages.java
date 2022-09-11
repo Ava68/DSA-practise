@@ -13,6 +13,9 @@ class Solution
         int res = -1;
         for(int i:A)
             high += i;
+        
+        if(N < M)
+            return -1;
          
         while(low <= high)
         {

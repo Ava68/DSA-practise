@@ -1,3 +1,5 @@
+https://practice.geeksforgeeks.org/problems/allocate-minimum-number-of-pages0937/1
+
 Binary search soln
 
 class Solution 

@@ -1,3 +1,5 @@
+https://leetcode.com/problems/is-graph-bipartite/
+
 class Solution {
     public boolean isBipartite(int[][] graph) {
         

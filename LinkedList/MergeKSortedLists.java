@@ -1,45 +1,67 @@
-https://leetcode.com/problems/merge-k-sorted-lists/description/
-
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        if(lists.length == 0){
+        if(lists.length == 0)
             return null;
-        }
-        //initializing an empty LinkedList
-        ListNode list3 = null;
-        for(int i = 0 ; i < lists.length; i ++){
-            //passing every LinkedList from the lists and getting the new merged LinkedList
-            list3 = merge(lists[i],list3);
-        }
-        return list3;
+        return mergeHelper(lists,0,lists.length-1);
     }
-    //This is the merge function of the MergeSort Algorithm.
-    public ListNode merge(ListNode list1,ListNode list2){
-        //Creating the dummy node to keep track of the head node of new linkedList i.e. is list3
-        ListNode dummy = new ListNode(-1);
-        ListNode list3 = new ListNode(-2);
-        dummy.next = list3;
-        while(list1 != null && list2 != null){
-            if(list1.val <= list2.val){
-                list3.next = new ListNode(list1.val,null);
-                list3 = list3.next;
-                list1 = list1.next;
-            }else{
-                list3.next = new ListNode(list2.val,null);
-                list3 = list3.next;
-                list2 = list2.next;
+
+    public ListNode mergeHelper(ListNode[] lists, int left , int right)
+    {
+        if(left >= right)
+            return lists[left];
+        int mid = (left + right) /2;
+        ListNode lList = mergeHelper(lists,left,mid);
+        ListNode rList = mergeHelper(lists,mid+1,right);
+        return merge(lList,rList);
+    }
+
+    public ListNode merge(ListNode lList, ListNode rList)
+    {
+        ListNode dummListHead = new ListNode(101);
+        ListNode dummy = dummListHead;
+        while(lList != null &&  rList != null)
+        {
+            if(lList.val <= rList.val)
+            {
+                dummy.next = new ListNode(lList.val);
+                lList = lList.next;
+                dummy = dummy.next;
+            }
+               
+            else
+            {
+                 dummy.next = new ListNode(rList.val);
+                 rList = rList.next;
+                 dummy = dummy.next;
             }
         }
-        while(list1 != null){
-            list3.next = new ListNode(list1.val,null);
-            list3 = list3.next;
-            list1 = list1.next;
+        while(lList != null)
+        {
+            dummy.next = new ListNode(lList.val);
+            lList = lList.next;
+            dummy = dummy.next;
+
         }
-        while(list2 != null){
-            list3.next = new ListNode(list2.val,null);
-            list3 = list3.next;
-            list2 = list2.next;
+        while(rList != null)
+        {
+            dummy.next = new ListNode(rList.val);
+            rList = rList.next;
+            dummy = dummy.next;
+
         }
-        return dummy.next.next;
+     return dummListHead.next;
+
     }
+
+    
 }

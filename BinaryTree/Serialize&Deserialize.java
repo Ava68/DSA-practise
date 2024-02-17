@@ -1,28 +1,45 @@
 public class Codec {
-
-    // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
-        
-       if (root == null) 
-           return "#";
-        
-        return root.val + "," + serialize(root.left) + "," + serialize(root.right);
-        
+        if (root == null) return "";
+        Queue<TreeNode> q = new LinkedList<>();
+        StringBuilder res = new StringBuilder();
+        q.add(root);
+        while (!q.isEmpty()) {
+            TreeNode node = q.poll();
+            if (node == null) {
+                res.append("n,");
+                continue;
+            }
+            res.append(node.val + ",");
+            q.add(node.left);
+            q.add(node.right);
+        }
+        return res.toString();
     }
 
-    // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-        
-        Queue<String> queue = new LinkedList<>(Arrays.asList(data.split(",")));
-        return helper(queue);
-    }
-    
-     private TreeNode helper(Queue<String> queue) {
-        String s = queue.poll();
-        if (s.equals("#")) return null;
-        TreeNode root = new TreeNode(Integer.valueOf(s));
-        root.left = helper(queue);
-        root.right = helper(queue);
+        if (data == "") return null;
+        Queue<TreeNode> q = new LinkedList<>();
+        String[] values = data.split(",");
+        TreeNode root = new TreeNode(Integer.parseInt(values[0]));
+        q.add(root);
+
+        for(int i =1; i<values.length; i++)
+        {
+            TreeNode parent = q.poll();
+
+            if(!values[i].equals("n")) {
+                TreeNode left = new TreeNode(Integer.parseInt(values[i]));
+                parent.left = left;
+                q.add(left);
+            }
+            i++;
+            if(!values[i].equals("n")) {
+                TreeNode right = new TreeNode(Integer.parseInt(values[i]));
+                parent.right = right;
+                q.add(right);
+            }
+        }
         return root;
     }
 }

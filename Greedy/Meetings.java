@@ -64,3 +64,47 @@ class Solution
         return ans.size();
     }
 }
+
+
+
+// without using custom class
+
+class Solution 
+{
+    //Function to find the maximum number of meetings that can
+    //be performed in a meeting room.
+    public static int maxMeetings(int start[], int end[], int n)
+    {
+        // add your code here
+        // Your code here  m
+        int intervals[][] = new int [n][2];
+        for(int i=0; i<start.length; i++)
+        {
+            intervals[i][0] = start[i];
+            intervals[i][1] = end[i];
+        }
+        Arrays.sort(intervals,(a, b) -> a[1] - b[1] );
+        int prevStart = intervals[0][0];
+        int prevEnd = intervals[0][1];
+        int count = 1;
+        for(int i=1; i<n; i++)
+        {
+            int newStart = intervals[i][0];
+            int newEnd = intervals[i][1];
+            
+            // overlapping condition
+            if(newStart <= prevEnd)
+            {
+                continue;
+            }
+            else 
+            {
+                prevStart = newStart;
+                prevEnd = newEnd;
+                count++;
+            }
+        }
+        return count;
+    
+    }
+}

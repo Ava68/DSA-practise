@@ -1,6 +1,6 @@
 class Solution {
     public List<String> letterCombinations(String digits) {
-        HashMap<Integer,String> map = new HashMap<Integer,String>();
+        
         String[] keypad={"0","1","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
 
         List<String> ans = new ArrayList<>();
